@@ -2,10 +2,10 @@
 <html dir="ltr" lang="en-GB">
 	<head>
 		<title>ADAPT</title>
-		<script src="/assets/js/jquery.js"></script>
-		<script src="/assets/js/bootstrap.min.js"></script>
-		<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/assets/css/adapt.css" rel="stylesheet">
+		<script src="https://evolvetest.cloudcontrolapp.com/assets/js/jquery.js"></script>
+		<script src="https://evolvetest.cloudcontrolapp.com/assets/js/bootstrap.min.js"></script>
+		<link href="https://evolvetest.cloudcontrolapp.com/assets/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://evolvetest.cloudcontrolapp.com/assets/css/adapt.css" rel="stylesheet">
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
