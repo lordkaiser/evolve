@@ -1,7 +1,7 @@
 <?
 // ini_set('display_errors','1');
 // error_reporting(E_ALL);
-define( '_ROOT', 'F:/Console Hobby/wamp/www/adapt/api' );
+define( '_ROOT', '/srv/www/code/web/api' );
 
 date_default_timezone_set('America/Denver');
 session_start();
