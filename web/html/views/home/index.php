@@ -4,7 +4,7 @@
 		<span style="float: right;">
 			<select id="inputLang">
 				<? foreach ($languages as $language) { ?>
-				<option value="<?=$language->L_ID;?>"><?=$language->name;?></option>
+				<option value="<? echo $language->L_ID;?>"><? echo $language->name;?></option>
 				<? } ?>
 			</select>
 		</span>
@@ -21,7 +21,7 @@
 		<span style="float: right;">
 			<select id="outputLang">
 				<? foreach ($languages as $language) { ?>
-				<option value="<?=$language->L_ID;?>"><?=$language->name;?></option>
+				<option value="<? echo $language->L_ID;?>"><? echo $language->name;?></option>
 				<? } ?>
 			</select>
 		</span>
