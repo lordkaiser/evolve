@@ -1,0 +1,17 @@
+.a-footer-block {
+  float: left;
+  margin-right: 2%;
+  min-width: 135px;
+  padding-bottom: 15px;
+  width: 23%;
+}
+
+.a-footer-description {
+  color: #747474;
+}
+
+.a-footer-title {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
