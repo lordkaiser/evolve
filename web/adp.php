@@ -1,6 +1,6 @@
 <?php
-// ini_set('display_errors','1');
-// error_reporting(E_ALL);
+ini_set('display_errors','1');
+error_reporting(E_ALL);
 
 define("BASE_PATH", "F:/Console Hobby/wamp/www/adapt/html");
 define("VIEW_PATH", BASE_PATH . "/views/");
