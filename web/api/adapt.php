@@ -1,4 +1,4 @@
-<?
+<?php
 // ini_set('display_errors','1');
 // error_reporting(E_ALL);
 define( '_ROOT', '/srv/www/code/web/api' );
