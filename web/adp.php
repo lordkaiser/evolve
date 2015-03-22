@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors','1');
 error_reporting(E_ALL);
-
+echo(getcwd());
 define("BASE_PATH", "F:/Console Hobby/wamp/www/adapt/html");
 define("VIEW_PATH", BASE_PATH . "/views/");
 require("F:/Console Hobby/wamp/www/adapt/library/Controller.php");
