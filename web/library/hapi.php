@@ -8,7 +8,7 @@ class hapi {
 	public $bbb = null; // the write to local class
 	public $bbburl = '';
 	public $bbbid = null;
-	public $path = 'F:/Console Hobby/wamp/www/adapt/api';
+	public $path = '/srv/www/code/web/api';
 	public $cached = FALSE;
 	public $riak = null;
 	public $connected = false;
@@ -21,7 +21,7 @@ class hapi {
 		$this->method = $method;
 		list( $this->url, ) = explode( ".", $_SERVER['SERVER_NAME'] );	
 		
-		include "F:/Console Hobby/wamp/www/adapt/library/riak.php";
+		include "/srv/www/code/web/library/riak.php";
 
 		if(!$this->riak) {
 			$this->riak = new RiakClient("riakdb.app.hurdman.org", 8098);

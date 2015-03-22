@@ -2,10 +2,10 @@
 ini_set('display_errors','1');
 error_reporting(E_ALL);
 echo(getcwd());
-define("BASE_PATH", "F:/Console Hobby/wamp/www/adapt/html");
+define("BASE_PATH", "/srv/www/code/web/html");
 define("VIEW_PATH", BASE_PATH . "/views/");
-require("F:/Console Hobby/wamp/www/adapt/library/Controller.php");
-require("F:/Console Hobby/wamp/www/adapt/library/aapi.php");
+require("/srv/www/code/web/library/Controller.php");
+require("/srv/www/code/web/library/aapi.php");
 
 list( $uri, $get ) = explode( "?", $_SERVER['REQUEST_URI'] );
 $segments = explode( "/", str_replace( "", "", preg_replace( "/\/$|^\//", "", $uri ) ) );
@@ -70,7 +70,7 @@ ob_end_clean();
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 if ($_has_captcha) {
-  require("F:/Console Hobby/wamp/www/adapt/assets/secureimage/secureimage.php");  
+  require("/srv/www/code/web/assets/secureimage/secureimage.php");  
 }
 if (!$_ignore_template) {
     include BASE_PATH ."/templates/wrapper.php";
