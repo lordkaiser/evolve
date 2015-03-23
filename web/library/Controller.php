@@ -46,7 +46,35 @@ class Controller{
 				$aapi->set($key, ( is_array($value) ? $value : addslashes($value) ));
 			}		
 		}
-		return $aapi->get($url);
+		$uri = explode( "/", $location );
+		$path = "/srv/www/code/web/api/" . $uri[0] . "/";
+
+		$class = $uri[0];
+		$subclass = $uri[1];
+
+		if( $uri[1] && file_exists( $path . $uri[1] . ".php" ) ) {
+			// do the sub class and run its method
+			$path = $path . $uri[1] . '.php';
+			$class = $uri[1] . '_API';
+			$method = ( $uri[2] ? $uri[2] : 'index' );
+		} else {
+			$path = $path . $uri[0] . ".php";
+			$class = $uri[0] . '_API';
+			$method = ( $uri[1] ? $uri[1] : 'index' );
+		}
+
+		include "db.php";
+		include "hapi.php";
+		include $path;
+
+		if( !in_array($method,get_class_methods($class)) ) {
+			return "No such method $class::$method";
+		}
+
+		Base::$segments = $uri;*/
+		$api = new $class();
+		$api->segments = $uri;
+		return $api->output($api->$method());
 		
 		// $query = json_decode($aapi->get($url));
 		// if( isset($query) && isset($query->results) ) return $query->results;
