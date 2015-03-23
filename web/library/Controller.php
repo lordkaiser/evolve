@@ -69,7 +69,9 @@ class Controller{
 		if( !class_exists('hapi') ) {
 			include "/srv/www/code/web/library/hapi.php";
 		}
-		include $path;
+		if( !class_exists($class.'_api') ) {
+			include $path;
+		}
 
 		if( !in_array($method,get_class_methods($class)) ) {
 			return "No such method $class::$method";
