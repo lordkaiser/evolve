@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 class Home_Index extends Controller {
 
 	public function initialize(){
-		// $data['languages'] = $this->getData('language/listing', array(), array());
+		$data['languages'] = $this->getData('language/listing', array(), array());
 		$this->load('index', $data);
 	}
 	
