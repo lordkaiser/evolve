@@ -70,6 +70,7 @@ class Controller{
 			include "/srv/www/code/web/library/hapi.php";
 		}
 		$tempClass = $class.'_api';
+		echo $tempClass;
 		if( !class_exists($tempClass) ) {
 			include $path;
 		}
