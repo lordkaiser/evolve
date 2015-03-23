@@ -36,7 +36,7 @@
 <script type="text/javascript">
 	$('#proceed').click( function() {
 		$('#test').text('');
-		$.post('http://adapt.com/code/translateTest', {
+		$.post('https://evolvetest.cloudcontrolapp.com/code/translateTest', {
 			lid: $('#inputLang').val(),
 			code: $('#input').val(),
 			target: $('#outputLang').val()
@@ -45,7 +45,7 @@
 		});
 
 		$('#output').val('');
-		$.post('http://adapt.com/code/translate', {
+		$.post('https://evolvetest.cloudcontrolapp.com/code/translate', {
 			lid: $('#inputLang').val(),
 			code: $('#input').val(),
 			target: $('#outputLang').val()
