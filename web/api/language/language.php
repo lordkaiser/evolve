@@ -13,7 +13,12 @@ class language_API extends hapi {
 	}
 
 	public function constructDB() {
-		return $this->write("test:go", "INSERT INTO `language` (`L_ID`, `name`, `variablePrecedence`, `declarationPrecedence`, `omniPrecedence`, `spacedPrecedence`) VALUES	(1, 'PHP', '$', '$', 1, 0),	(2, 'Javascript', '', 'var', 0, 1);");
+		return $this->write("test:go", "CREATE TABLE IF NOT EXISTS `statement` (
+  `S_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  PRIMARY KEY (`S_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;");
 	}
 }
 ?>
