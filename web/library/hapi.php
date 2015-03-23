@@ -65,7 +65,7 @@ class hapi {
 	}
 	
 	public function output( $data, $type = null ) {
-		header( "HTTP/1.1 200 OK" );
+		// header( "HTTP/1.1 200 OK" );
 		if( is_string($data) ) {
 			if( $this->outputtype == 'css' ) header( 'Content-type: text/css' );
 			else if( $this->outputtype == 'js' ) header( 'Content-type: application/javascript' );
