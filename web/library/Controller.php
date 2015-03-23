@@ -73,8 +73,10 @@ class Controller{
 
 		$api = new $class();
 		$api->segments = $uri;
-		return json_decode($api->output($api->$method()));
-		
+		$query = json_decode($api->output($api->$method()));
+		if( isset($query) && isset($query->results) ) return $query->results;
+		elseif( isset($query) ) return $query;
+		else return array();
 		// $query = json_decode($aapi->get($url));
 		// if( isset($query) && isset($query->results) ) return $query->results;
 		// elseif( isset($query) ) return $query;
