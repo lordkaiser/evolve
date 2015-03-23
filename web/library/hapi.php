@@ -19,9 +19,11 @@ class hapi {
 		$this->redis = $localredis;
 		$this->segments = $uri;
 		$this->method = $method;
-		list( $this->url, ) = explode( ".", $_SERVER['SERVER_NAME'] );	
+		list( $this->url, ) = explode( ".", $_SERVER['SERVER_NAME'] );
 		
-		include "/srv/www/code/web/library/riak.php";
+		if( !class_exists('RiakClient') ) {
+			include "/srv/www/code/web/library/riak.php";
+		}
 
 		if(!$this->riak) {
 			$this->riak = new RiakClient("riakdb.app.hurdman.org", 8098);
