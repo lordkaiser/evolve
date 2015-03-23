@@ -139,7 +139,7 @@ class db {
 		self::$user = $creds['MYSQLS']['MYSQLS_USERNAME'];
 		self::$pass = $creds['MYSQLS']['MYSQLS_PASSWORD'];
 
-		if( $dbname == 'adapt' ) $dbname = 'adapt';
+		if( $dbname == $creds['MYSQLS']['MYSQLS_DATABASE'] ) $dbname = $creds['MYSQLS']['MYSQLS_DATABASE'];
 		
 		//print_r($_SERVER['backbone']);
 				
@@ -148,8 +148,8 @@ class db {
 		if( !self::$connect ) {
 			trigger_error("Cannot connect to mysql");
 		} else {	
-			if( !isset(self::$db ) ) mysql_select_db("adapt");
-			else mysql_select_db( 'adapt', self::$connect );
+			if( !isset(self::$db ) ) mysql_select_db($creds['MYSQLS']['MYSQLS_DATABASE']);
+			else mysql_select_db( $creds['MYSQLS']['MYSQLS_DATABASE'], self::$connect );
 			// get the database by bbbid
 			if( !is_null($dbname) ) {
 				self::$db = $dbname;
