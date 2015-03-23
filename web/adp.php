@@ -1,8 +1,7 @@
 <?php
-ini_set('display_errors','1');
-error_reporting(E_ALL);
+// ini_set('display_errors','1');
+// error_reporting(E_ALL);
 
-echo $_SERVER['SERVER_NAME'];
 define("BASE_PATH", "/srv/www/code/web/html");
 define("VIEW_PATH", BASE_PATH . "/views/");
 require("/srv/www/code/web/library/Controller.php");
