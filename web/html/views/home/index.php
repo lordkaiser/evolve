@@ -1,1 +1,1 @@
-<?php echo 'tset ' . ini_get('allow_url_fopen'); ?>
+<?php echo $languages; ?>
