@@ -33,7 +33,7 @@ class Controller{
 	public function getData($location, $segments = array(), $posts = array()){
 		global $aapi;
 
-		$url = "http://".$_SERVER['SERVER_NAME']."/apis/".$location;
+		$url = "https://".$_SERVER['SERVER_NAME']."/apis/".$location;
 		// return $url;
 		foreach($segments as $segment) {
 			$url .= $segment . "/";
