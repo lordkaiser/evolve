@@ -40,11 +40,7 @@ class Controller{
 		}
 
 		foreach($posts as $key => $value) {
-			if( is_array( $value ) ) {
-				foreach( $value as $k => $v ) $aapi->set( $key, ( is_array($value) ? $value : addslashes($value) ) );
-			} else {
-				$aapi->set($key, ( is_array($value) ? $value : addslashes($value) ));
-			}		
+			$_POST[$key] = $value;
 		}
 		$uri = explode( "/", $location );
 		$path = "/srv/www/code/web/api/" . $uri[0] . "/";
