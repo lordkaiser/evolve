@@ -1,1 +1,1 @@
-<?php echo $languages; ?>
+<?php print_r($languages); ?>
