@@ -71,7 +71,6 @@ class Controller{
 			return "No such method $class::$method";
 		}
 
-		Base::$segments = $uri;*/
 		$api = new $class();
 		$api->segments = $uri;
 		return $api->output($api->$method());
