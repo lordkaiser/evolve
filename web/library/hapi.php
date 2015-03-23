@@ -65,24 +65,6 @@ class hapi {
 	}
 	
 	public function output( $data, $type = null ) {
-		// header( "HTTP/1.1 200 OK" );
-		if( is_string($data) ) {
-			if( $this->outputtype == 'css' ) header( 'Content-type: text/css' );
-			else if( $this->outputtype == 'js' ) header( 'Content-type: application/javascript' );
-			else if( $this->outputtype == 'csv' ) {
-				//header( "Content-Type: text/csv" );	
-			}
-			echo $data;
-			return;
-		} else {
-			if( $this->outputtype == 'xml' ) {
-				header( "Content-type: text/xml" );
-				//$xml = Array2XML::createXML('results', $data);	
-			} else {
-				header("Content-type: text/plain;charset=iso-8859-1");
-			}
-
-			// check for results in there already and split it out
 			if( isset($data['results'] ) ) {
 				$return = array( 'results' => $data['results'] ); 
 				// loop through each other one and add it in
@@ -98,8 +80,7 @@ class hapi {
 			}
 			if( !isset($return['rows']) ) $return['rows'] = sizeof($return['results']);
 		
-			echo ( $this->outputtype == 'xml' ? $this->array2xml($data) : json_encode( $return ) );
-		}
+			return json_encode( $return ) );
 	}
 	
 	public function array2xml($array, $xml = false){
