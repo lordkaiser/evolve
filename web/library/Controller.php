@@ -38,14 +38,15 @@ class Controller{
 		foreach($segments as $segment) {
 			$url .= $segment . "/";
 		}
+
+		foreach($posts as $key => $value) {
+			if( is_array( $value ) ) {
+				foreach( $value as $k => $v ) $aapi->set( $key, ( is_array($value) ? $value : addslashes($value) ) );
+			} else {
+				$aapi->set($key, ( is_array($value) ? $value : addslashes($value) ));
+			}		
+		}
 		return $url;
-		// foreach($posts as $key => $value) {
-		// 	if( is_array( $value ) ) {
-		// 		foreach( $value as $k => $v ) $aapi->set( $key, ( is_array($value) ? $value : addslashes($value) ) );
-		// 	} else {
-		// 		$aapi->set($key, ( is_array($value) ? $value : addslashes($value) ));
-		// 	}		
-		// }
 		
 		// $query = json_decode($aapi->get($url));
 		// if( isset($query) && isset($query->results) ) return $query->results;
