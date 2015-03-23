@@ -46,7 +46,7 @@ class Controller{
 				$aapi->set($key, ( is_array($value) ? $value : addslashes($value) ));
 			}		
 		}
-		return $url;
+		return $aapi->get($url);
 		
 		// $query = json_decode($aapi->get($url));
 		// if( isset($query) && isset($query->results) ) return $query->results;
