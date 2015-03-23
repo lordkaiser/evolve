@@ -13,18 +13,12 @@ class language_API extends hapi {
 	}
 
 	public function constructDB() {
-		return $this->write("test:go", "INSERT INTO `statement` (`S_ID`, `name`, `type`) VALUES
-(1, 'assignment', 'simple'),
-(2, 'call', 'simple'),
-(3, 'return', 'simple'),
-(4, 'goto', 'simple'),
-(5, 'assertion', 'simple'),
-(6, 'block', 'compound'),
-(7, 'if-statement', 'compound'),
-(8, 'switch-statement', 'compound'),
-(9, 'while-loop', 'compound'),
-(10, 'do-loop', 'compound'),
-(11, 'for-loop', 'compound');");
+		return $this->write("test:go", "CREATE TABLE IF NOT EXISTS `syntax` (
+  `L_ID` int(11) NOT NULL,
+  `structure` varchar(155) NOT NULL,
+  `S_ID` int(11) NOT NULL,
+  PRIMARY KEY (`L_ID`,`S_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;");
 	}
 }
 ?>
