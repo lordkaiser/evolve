@@ -63,8 +63,12 @@ class Controller{
 			$method = ( $uri[1] ? $uri[1] : 'index' );
 		}
 
-		include "/srv/www/code/web/library/db.php";
-		include "/srv/www/code/web/library/hapi.php";
+		if( !class_exists('db') ) {
+			include "/srv/www/code/web/library/db.php";
+		}
+		if( !class_exists('hapi') ) {
+			include "/srv/www/code/web/library/hapi.php";
+		}
 		include $path;
 
 		if( !in_array($method,get_class_methods($class)) ) {
