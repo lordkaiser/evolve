@@ -33,7 +33,7 @@ class aapi {
 	
 	public function get( $url, $params = array() ) {
 		$this->set($params);
-		return file_get_contents( $url );
+		return $this->getParams($url);
 		return file_get_contents( $this->getParams($url) );
 	}
 	
