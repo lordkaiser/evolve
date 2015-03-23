@@ -1,17 +1,13 @@
 <?php
-$creds_string = file_get_contents($_ENV['CRED_FILE'], false);
-if ($creds_string == false) {
-  die('FATAL: Could not read credentials file');
-}
-$creds = json_decode($creds_string, true);
+
 class db {
 
-	static private $host = $creds['MYSQLS']['MYSQLS_HOSTNAME'];
-	static private $user = $creds['MYSQLS']['MYSQLS_USERNAME'];
-	static private $pass = $creds['MYSQLS']['MYSQLS_PASSWORD'];
+	static private $host = "localhost";
+	static private $user = "lordkaiser912";
+	static private $pass = "Alan34064324";
 
 	static $connect = NULL; // the connection to uber
-	static $db = $creds['MYSQLS']['MYSQLS_DATABASE']; // the database we'll be querying on
+	static $db = NULL; // the database we'll be querying on
 	static $bbbid = NULL; // what bbbid we are connected to
 	static $parameters = array(); // the bound parameters for queries
 	static $dict = NULL; // dictionary associated with the mergequery
@@ -131,8 +127,17 @@ class db {
 	 * Connect to uber
 	 */
 	static public function connect( $dbname = null ) {
-
-		if( !isset(self::$host) ) self::$host = 'localhost';
+		$creds_string = file_get_contents($_ENV['CRED_FILE'], false);
+		if ($creds_string == false) {
+		    die('FATAL: Could not read credentials file');
+		}
+		$creds = json_decode($creds_string, true);
+		$dbname = $creds['MYSQLS']['MYSQLS_DATABASE'];
+		self::$db = $creds['MYSQLS']['MYSQLS_DATABASE'];
+		self::$host = $creds['MYSQLS']['MYSQLS_HOSTNAME'];
+		$port       = $creds['MYSQLS']['MYSQLS_PORT'];
+		self::$user = $creds['MYSQLS']['MYSQLS_USERNAME'];
+		self::$pass = $creds['MYSQLS']['MYSQLS_PASSWORD'];
 
 		if( $dbname == 'adapt' ) $dbname = 'adapt';
 		
