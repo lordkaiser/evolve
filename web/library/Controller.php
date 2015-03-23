@@ -69,7 +69,8 @@ class Controller{
 		if( !class_exists('hapi') ) {
 			include "/srv/www/code/web/library/hapi.php";
 		}
-		if( !class_exists($class.'_api') ) {
+		$tempClass = $class.'_api';
+		if( !class_exists($tempClass) ) {
 			include $path;
 		}
 
