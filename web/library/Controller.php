@@ -46,7 +46,7 @@ class Controller{
 			}		
 		}
 		
-		$query = json_decode($aapi->post($url));
+		$query = json_decode($aapi->get($url));
 		if( isset($query) && isset($query->results) ) return $query->results;
 		elseif( isset($query) ) return $query;
 		else return array();		
