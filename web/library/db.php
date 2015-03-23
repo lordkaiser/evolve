@@ -3,6 +3,7 @@ $creds_string = file_get_contents($_ENV['CRED_FILE'], false);
 if ($creds_string == false) {
   die('FATAL: Could not read credentials file');
 }
+$creds = json_decode($creds_string, true);
 class db {
 
 	static private $host = $creds['MYSQLS']['MYSQLS_HOSTNAME'];
