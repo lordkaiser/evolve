@@ -82,7 +82,7 @@ class hapi {
 			}
 			if( !isset($return['rows']) ) $return['rows'] = sizeof($return['results']);
 		
-			echo json_encode( $return );
+			return json_encode( $return );
 	}
 	
 	public function array2xml($array, $xml = false){

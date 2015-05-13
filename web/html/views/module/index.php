@@ -46,18 +46,18 @@
 </style>
 <div style="width: 20%; float: left; max-height: 525px; overflow-y: scroll;">
 	<ul id="module_unordered">
-		<? foreach ($modules as $module) { ?>
-		<li><?=$module->name;?></li>
+		<?php foreach ($modules as $module) { ?>
+		<li><?php echo $module->name;?></li>
 		<li class="module_list_container">
 			<ol class="module_list">
-				<? $post['mid'] = $module->M_ID; ?>
-				<? $samples = $master->getData('sample/getAllUnderModule', array(), $post); ?>
-				<? foreach ($samples as $sample) { ?>
-				<li class="module_single" mid="<?=$module->M_ID;?>" sid="<?=$sample->S_ID;?>"><?=$sample->name;?></li>
-				<? } ?>
+				<?php $post['mid'] = $module->M_ID; ?>
+				<?php $samples = $master->getData('sample/getAllUnderModule', array(), $post); ?>
+				<?php foreach ($samples as $sample) { ?>
+				<li class="module_single" mid="<?php echo $module->M_ID;?>" sid="<?php echo $sample->S_ID;?>"><?php echo $sample->name;?></li>
+				<?php } ?>
 			</ol>
 		</li>
-		<? } ?>
+		<?php } ?>
 	</ul>
 </div>
 
