@@ -21,7 +21,6 @@ class Module_Index extends Controller {
 			array_splice($fullcode, $_POST['num'] + 1, 0, $erikaSettings);
 
 			$tempFile = fopen("compilerTemp2.php", "w") or die("Unable to open file!");
-			ftruncate($tempFile, 0);
 
 			$tempContent = '';
 			foreach ($fullcode as $modyval) {
@@ -52,8 +51,7 @@ class Module_Index extends Controller {
 			array_splice($fullcode, $_POST['num'] + 1, 0, 'return;');
 
 			$tempFile = fopen("compilerTemp.php", "w") or die("Unable to open file!");
-			ftruncate($tempFile, 0);
-			
+
 			$tempContent = '';
 			foreach ($fullcode as $modyval) {
 				$tempText = $modyval;
@@ -73,5 +71,5 @@ class Module_Index extends Controller {
 }
 
 $index = new Module_Index();
-return $index->initialize();
+$index->initialize();
 ?>
