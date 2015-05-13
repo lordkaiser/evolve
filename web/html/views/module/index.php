@@ -120,7 +120,7 @@
 		$('#test').html('');
 		var mid = $(this).attr('mid');
 		var sid = $(this).attr('sid');
-		$.post('http://adapt.com/module/get', {
+		$.post('https://evolvetest.cloudcontrolapp.com/module/get', {
 			mid: mid,
 			sid: sid
 		}, function(data) {
@@ -181,7 +181,7 @@
 			$('#code_cell' + codeLine).css('background-color', '#f0f080');
 
 			$('#outs').html('');
-			$.post('http://adapt.com/module/compiler', {
+			$.post('https://evolvetest.cloudcontrolapp.com/module/compiler', {
 				code: fullcode,
 				num: codeLine,
 				type: 'output'
@@ -190,7 +190,7 @@
 			});
 
 			$('#vars').html('');
-			$.post('http://adapt.com/module/compiler', {
+			$.post('https://evolvetest.cloudcontrolapp.com/module/compiler', {
 				code: fullcode,
 				num: codeLine,
 				runTimes: (runTimes.length == 0 ? 0 : runTimes[runTimes.length - 1]),
@@ -260,7 +260,7 @@
 			$('#code_cell' + codeLine).css('background-color', '#f0f080');
 
 			$('#outs').html('');
-			$.post('http://adapt.com/module/compiler', {
+			$.post('https://evolvetest.cloudcontrolapp.com/module/compiler', {
 				code: fullcode,
 				num: codeLine,
 				type: 'output'
@@ -269,7 +269,7 @@
 			});
 
 			$('#vars').html('');
-			$.post('http://adapt.com/module/compiler', {
+			$.post('https://evolvetest.cloudcontrolapp.com/module/compiler', {
 				code: fullcode,
 				num: codeLine,
 				runTimes: (runTimes.length == 0 ? 0 : runTimes[runTimes.length - 1]),
@@ -391,7 +391,7 @@
 
 	function postItUp() {
 		$('#vars').html('');
-		$.post('http://adapt.com/module/compiler', {
+		$.post('https://evolvetest.cloudcontrolapp.com/module/compiler', {
 			code: fullcode,
 			num: codeLine,
 			type: 'var'
@@ -405,7 +405,7 @@
 		});
 
 		$('#outs').html('');
-		$.post('http://adapt.com/module/compiler', {
+		$.post('https://evolvetest.cloudcontrolapp.com/module/compiler', {
 			code: fullcode,
 			num: codeLine,
 			type: 'output'
