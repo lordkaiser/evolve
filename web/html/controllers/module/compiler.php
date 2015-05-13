@@ -20,6 +20,9 @@ class Module_Index extends Controller {
 			';
 			array_splice($fullcode, $_POST['num'] + 1, 0, $erikaSettings);
 
+			$fh = fopen("compilerTemp2.php", "w") or die("Unable to open file!");
+			fclose($fh);
+			unlink('compilerTemp2.php');
 			$tempFile = fopen("compilerTemp2.php", "w") or die("Unable to open file!");
 			
 			$tempContent = '';
@@ -50,6 +53,9 @@ class Module_Index extends Controller {
 		} elseif ($_POST['type'] == 'output') {
 			array_splice($fullcode, $_POST['num'] + 1, 0, 'return;');
 
+			$fh = fopen("compilerTemp.php", "w") or die("Unable to open file!");
+			fclose($fh);
+			unlink('compilerTemp.php');
 			$tempFile = fopen("compilerTemp.php", "w") or die("Unable to open file!");
 			
 			$tempContent = '';
