@@ -37,23 +37,23 @@
 
 	.module_list li:hover {
 		cursor: pointer;
-		background-color: #555555;
+		text-decoration: underline;
 	}
 
 	#module_unordered {
 		padding: 0;
 	}
 </style>
-<div style="width: 20%; float: left; max-height: 525px; overflow-y: scroll;">
+<div style="width: 20%; float: left; max-height: 577px; overflow-y: scroll;">
 	<ul id="module_unordered">
 		<?php foreach ($modules as $module) { ?>
-		<li><?php echo $module->name;?></li>
+		<li><?php echo$module->name;?></li>
 		<li class="module_list_container">
 			<ol class="module_list">
 				<?php $post['mid'] = $module->M_ID; ?>
 				<?php $samples = $master->getData('sample/getAllUnderModule', array(), $post); ?>
 				<?php foreach ($samples as $sample) { ?>
-				<li class="module_single" mid="<?php echo $module->M_ID;?>" sid="<?php echo $sample->S_ID;?>"><?php echo $sample->name;?></li>
+				<li class="module_single" mid="<?php echo$module->M_ID;?>" sid="<?php echo$sample->S_ID;?>"><?php echo$sample->name;?></li>
 				<?php } ?>
 			</ol>
 		</li>
@@ -61,25 +61,51 @@
 	</ul>
 </div>
 
-<div style="width: 40%; background-color: rgb(188, 188, 188); float:left; min-height: 525px;">
-	<div>
-		<button id="prev">Previous</button>
-		<button id="next">Next</button>
-		<button id="play">Play</button>
-		<button id="stop">Stop</button>
+<div style="width: 40%; background-color: rgb(188, 188, 188); float:left; min-height: 577px;">
+	<div id="test">
+		<table style="background-color: white; border: 2px inset; width: 96%; margin: 30px 2% 2%;">
+			<?php for ($xyz=0; $xyz < 10; $xyz++) { ?>
+			<tr><td>.</td></tr>
+			<?php } ?>
+		</table>
 	</div>
-	<div id="test"></div>
+	<div style="margin: 0px auto; display: block; width: 60%;">
+		<div class="btn-group" role="group">
+			<button type="button" class="btn btn-default" id="prev">
+				<span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>
+			</button>
+			<button type="button" class="btn btn-success" id="play">
+				<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+			</button>
+			<button type="button" class="btn btn-default" id="next">
+				<span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
+			</button>
+			<button type="button" class="btn btn-danger" id="stop">
+				<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+			</button>
+			<button type="button" class="btn btn-warning" id="restart">
+				<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+			</button>
+		</div>
+		<div style="float: right;">
+			<form id="editEForm" action="" method="post">
+				<textarea name="editECode" id="editECode" style="display: none;"></textarea>
+				<button type="button" class="btn btn-default" id="editE" disabled>Edit</button>
+			</form>
+		</div>
+	</div>
+	<div id="programE" style="background-color: white; border: 2px inset; width: 96%; margin: 24px 2% 2%; min-height: 205px;"></div>
 </div>
-<div style="width: 40%; float: left;">
+<div style="width: 40%; background-color: rgb(188, 188, 188); min-height: 577px; float: left;">
 	<div>Variables</div>
-	<div id="vars" style="background-color: white; border: 2px inset; width: 96%; margin: 2%; min-height: 212px;"></div>
-	<div>Output</div>
-	<div id="outs" style="background-color: white; border: 2px inset; width: 96%; margin: 2%; min-height: 212px;"></div>
+	<div id="vars" style="background-color: white; border: 2px inset; width: 96%; margin: 2%; min-height: 205px;"></div>
+	<div style="margin-top: 35px;">Output</div>
+	<div id="outs" style="background-color: white; border: 2px inset; width: 96%; margin: 2%; min-height: 205px;"></div>
 </div>
 <script type="text/javascript">
 	var module_open = false;
-	var module_speed = 1000;
-	var codeLine = 0;
+	var module_speed = 500;
+	var codeLine = 1;
 	var codeMax = 0;
 	var fullcode;
 	var play = false;
@@ -88,36 +114,9 @@
 	var inLoop = false;
 	var runTimes = [];
 
-	$('#module').click( function() {
-		if (!module_open) {
-		  $( "#module" ).animate({
-		    left: "+=285"
-		  }, module_speed, function() {
-		    // Animation complete.
-		  });
-		  $( "#module_container" ).animate({
-		    left: "+=285"
-		  }, module_speed, function() {
-		    // Animation complete.
-		  });
-		  module_open = true;
-		} else {
-		  $( "#module" ).animate({
-		    left: "-=285"
-		  }, module_speed, function() {
-		    // Animation complete.
-		  });
-		  $( "#module_container" ).animate({
-		    left: "-=285"
-		  }, module_speed, function() {
-		    // Animation complete.
-		  });
-		  module_open = false;
-		}
-	});
-
 	$('.module_single').click(function () {
 		$('#test').html('');
+		$('#editE').prop('disabled', false);
 		var mid = $(this).attr('mid');
 		var sid = $(this).attr('sid');
 		$.post('https://evolvetest.cloudcontrolapp.com/module/get', {
@@ -147,6 +146,13 @@
 			$('#test').append(newTable);
 			$('#code_cell1').css('background-color', '#f0f080');
 			codeLine = 1;
+			module_open = false;
+			module_speed = 500;
+			play = false;
+			startLoop = [];
+			endLoop = [];
+			inLoop = false;
+			runTimes = [];
 		});
 	});
 
@@ -213,7 +219,9 @@
 					}					
 				}
 				$.each(vars, function(index, value) {
-					totalText += '$' + index + '=' + value + '</br>';
+					if(index!='inLoop') {
+						totalText += '$' + index + '=' + value + '</br>';
+					}
 				});
 				$('#vars').html(totalText);
 			});
@@ -291,7 +299,9 @@
 					}
 				}
 				$.each(vars, function(index, value) {
-					totalText += '$' + index + '=' + value + '</br>';
+					if(index!='inLoop') {
+						totalText += '$' + index + '=' + value + '</br>';
+					}
 				});
 				$('#vars').html(totalText);
 			});
@@ -413,4 +423,28 @@
 			$('#outs').html(data);
 		});
 	}
+
+	$('#restart').click( function() {
+		$('.code_cell').each( function( index, value ) {
+		  $(value).css('background-color', '');
+		});
+		$('#code_cell1').css('background-color', '#f0f080');
+		codeLine = 1;
+		module_open = false;
+		module_speed = 500;
+		play = false;
+		startLoop = [];
+		endLoop = [];
+		inLoop = false;
+		runTimes = [];
+		$('#next').prop('disabled', false);
+		$('#prev').prop('disabled', false);
+	});
+
+	$('#editE').click( function() {
+		fullcode.each( function(index, value) {
+			
+		});
+		$('#')
+	});
 </script>
